@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Gestor de tareas";
+}
+
+
+<div class="text-center">
+
+
+    <h1 class="display-4">Gestor de tareas</h1>
+
+
+    <p class="lead">
+        Organiza tus tareas pendientes, en proceso y completadas de forma sencilla.
+    </p>
+
+
+    <img src="https://53.fs1.hubspotusercontent-na1.net/hubfs/53/Task-Jun-24-2021-08-28-30-75-PM.png" alt="Gestión de tareas"
+         class="img-fluid my-4"
+         style="max-width: 400px;" />
+
+<br />
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-controller="Tareas"
+           asp-action="Index"
+           class="btn btn-primary btn-lg">
+            Ir al gestor de tareas
+        </a>
+    }
+    else
+    {
+        <p class="mt-4 text-muted">
+            Inicia sesión para acceder a tu gestor de tareas.
+        </p>
+    }
+</div>

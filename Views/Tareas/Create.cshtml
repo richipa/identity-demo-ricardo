@@ -1,0 +1,53 @@
+﻿@model IdentityDemo.DTOs.TareaDto
+
+
+@{
+    ViewData["Title"] = "Nueva tarea";
+}
+
+
+<h2>Nueva tarea</h2>
+
+
+<form asp-action="Create" method="post">
+
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+    <div class="mb-3">
+        <label asp-for="Titulo" class="form-label"></label>
+        <input asp-for="Titulo" class="form-control" />
+        <span asp-validation-for="Titulo" class="text-danger"></span>
+    </div>
+
+
+    <div class="mb-3">
+        <label asp-for="Descripcion" class="form-label"></label>
+        <textarea asp-for="Descripcion" class="form-control"></textarea>
+        <span asp-validation-for="Descripcion" class="text-danger"></span>
+    </div>
+
+
+    <div class="mb-3">
+        <label asp-for="Estado" class="form-label"></label>
+        <select asp-for="Estado" class="form-select">
+            <option value="">-- Selecciona un estado --</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="EnProceso">En proceso</option>
+            <option value="Completada">Completada</option>
+        </select>
+        <span asp-validation-for="Estado" class="text-danger"></span>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Guardar tarea</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+
+
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

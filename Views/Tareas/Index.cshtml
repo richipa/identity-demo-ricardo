@@ -1,0 +1,92 @@
+﻿@model IEnumerable<IdentityDemo.DTOs.TareaDto>
+
+@{
+    ViewData["Title"] = "Mis tareas";
+}
+
+<h2>Mis tareas</h2>
+
+<div class="mb-3">
+    <a asp-action="Index" class="btn btn-outline-dark btn-sm">Todas</a>
+    <a asp-action="Pendientes" class="btn btn-outline-warning btn-sm">Pendientes</a>
+    <a asp-action="EnProceso" class="btn btn-outline-primary btn-sm">En proceso</a>
+    <a asp-action="Completadas" class="btn btn-outline-success btn-sm">Completadas</a>
+</div>
+<br />
+<p>
+    <a asp-action="Create" class="btn btn-success">
+        Nueva tarea
+    </a>
+</p>
+
+@if (!Model.Any())
+{
+    <p>No tienes tareas asignadas.</p>
+}
+else
+{
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Estado</th>
+                <th>Descripción</th>
+                <th>Fecha creación</th>
+                <th>Fecha completada</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var tarea in Model)
+            {
+                <tr>
+                    <td>@tarea.Titulo</td>
+
+                    <td>
+                        @tarea.Estado
+                    </td>
+
+                    <td style="max-width: 300px;">
+                        @if (!string.IsNullOrEmpty(tarea.Descripcion))
+                        {
+                            <span title="@tarea.Descripcion">
+                                @tarea.Descripcion
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="text-muted">Sin descripción</span>
+                        }
+                    </td>
+
+                    <td>@tarea.FechaCreacion.ToString("dd/MM/yyyy")</td>
+
+                    <td>
+                        @if (tarea.FechaCompletada.HasValue)
+                        {
+                            @tarea.FechaCompletada.Value.ToString("dd/MM/yyyy")
+                        }
+                        else
+                        {
+                            <span class="text-muted">—</span>
+                        }
+                    </td>
+
+                    <td>
+                        <a asp-action="Edit"
+                           asp-route-id="@tarea.Id"
+                           class="btn btn-sm btn-warning">
+                            Editar
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@tarea.Id"
+                           class="btn btn-sm btn-danger">
+                            Borrar
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

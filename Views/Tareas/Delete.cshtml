@@ -1,0 +1,22 @@
+﻿@model int
+
+@{
+    ViewData["Title"] = "Borrar tarea";
+}
+
+<h2>Borrar tarea</h2>
+
+<p>¿estás seguro de que quieres borrar esta tarea?</p>
+
+<form asp-action="DeleteConfirmed" method="post">
+    @* pasamos el id de la tarea *@
+    <input type="hidden" name="id" value="@Model" />
+
+    <button type="submit" class="btn btn-danger">
+        Borrar
+    </button>
+
+    <a asp-action="Index" class="btn btn-secondary">
+        Cancelar
+    </a>
+</form>

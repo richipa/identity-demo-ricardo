@@ -1,0 +1,24 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityUser
+
+@{
+    ViewData["Title"] = "Mi perfil";
+}
+
+<h2>Mi perfil</h2>
+
+<table class="table">
+    <tr>
+        <th>Correo electrónico</th>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <th>Telefono</th>
+        <td>@Model.PhoneNumber</td>
+    </tr>
+</table>
+
+<p>
+    <a asp-action="Edit" class="btn btn-primary">
+        Editar perfil
+    </a>
+</p>
